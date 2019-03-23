@@ -14,19 +14,32 @@ public class Elevator_Engine : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {//Have 3 levels of speed. 1 2 and 3, with 3 being the highest. Allow therapist to use arrow keys to also control speed.
+    {//Have 4 levels of speed. 0 1 2 and 3, with 3 being the highest. Allow therapist to use arrow keys to also control speed.
         //Below code used for the movement of the elevator
         transform.position += Vector3.up * speed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))//replace keyboard keys with in game physical buttons. Arrow buttons allowed for therapist.
-        {
+        //speeds not final
+        if (Input.GetKeyDown(KeyCode.A))//replace keyboard keys with in game physical buttons. Arrow buttons allowed for therapist.
+        {//level 0
+            speed = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {//level 1
             speed = 5;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            speed = 0;
-        }
+        //the following speeds still need testing.
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{//level 2
+        //    speed = 5;
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.0))
+        //{//level 3
+        //    speed = 5;
+        //}
 
         //Following code is used for the force stop of the session:
         //if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) &&
@@ -37,7 +50,7 @@ public class Elevator_Engine : MonoBehaviour
         //    transform.position = startPosition;
         //}
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             speed = 0;
             transform.position = startPosition;
