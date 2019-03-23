@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Elevator_Engine : MonoBehaviour
 {
+    private float speed = 0;
+    public GameObject go;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,18 @@ public class Elevator_Engine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-           
+        transform.position += Vector3.up * speed * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            speed = 5;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            speed = 0;
+        }
+
     }
+
 }
