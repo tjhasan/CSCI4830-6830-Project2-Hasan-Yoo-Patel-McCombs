@@ -53,13 +53,13 @@ public class Elevator_Engine : MonoBehaviour
         }
 
         //Following code is used for the force stop of the session:
-        //if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) &&
-        //   OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) &&
-        //   OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) &&
-        //   OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
-        //{
-        //    transform.position = startPosition;
-        //}
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) &&
+            OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) &&
+            OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) &&
+            OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+                transform.position = new Vector3(1.111f, 0.824f, 0.573f);
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
