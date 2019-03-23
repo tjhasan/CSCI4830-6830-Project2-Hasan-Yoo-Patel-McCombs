@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUpEngine : MonoBehaviour
+public class LevelDownScript : MonoBehaviour
 {
     public GameObject go;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == go)
+        if (collision.gameObject == go)
         {
-            Debug.Log("Button Up Pressed");
+            Debug.Log("Button Down Pressed");
         }
     }
 }
