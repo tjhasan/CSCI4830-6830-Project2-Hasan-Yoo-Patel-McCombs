@@ -15,10 +15,10 @@ public class Elevator_Engine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {//Have 4 levels of speed. 0 1 2 and 3, with 3 being the highest. Allow therapist to use arrow keys to also control speed.
-        //Below code used for the movement of the elevator
 
-        transform.position += Vector3.up * speed * Time.deltaTime;
+        transform.position += Vector3.up * speed * Time.deltaTime; //actual movement of the elevator.
 
+        //speeds not final
         if (level == 0)
         {//level 1
             speed = 0;
@@ -39,19 +39,16 @@ public class Elevator_Engine : MonoBehaviour
             speed = 10;
         }
 
-        //speeds not final
-        if (Input.GetKeyDown(KeyCode.UpArrow) && level < 3 ||//replace keyboard keys with in game physical buttons. Arrow buttons allowed for therapist.
-            OVRInput.GetDown(OVRInput.Button.One) && level < 3)
-        {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && level < 3 ||//Given that the speed is not currently at 3 or 0...
+            OVRInput.GetDown(OVRInput.Button.One) && level < 3)//increase/decrease the level by 1.
+        {//arrow keys are for therapist. Buttons are for the user
             level++;
-            Debug.Log(level);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && level > 0 ||
             OVRInput.GetDown(OVRInput.Button.Three) && level > 0)
         {
             level--;
-            Debug.Log(level);
         }
 
         //Following code is used for the force stop of the session:
@@ -59,11 +56,12 @@ public class Elevator_Engine : MonoBehaviour
             OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) &&
             OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) &&
             OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
-        {
+        {//if all the triggers are squeezed together, then it resets the elevator
                 level = 0;
                 transform.position = new Vector3(1.111f, 0.824f, 0.573f);
         }
 
+        //seperated inputs for readability
         if (Input.GetKeyDown(KeyCode.E))
         {
             level = 0;
