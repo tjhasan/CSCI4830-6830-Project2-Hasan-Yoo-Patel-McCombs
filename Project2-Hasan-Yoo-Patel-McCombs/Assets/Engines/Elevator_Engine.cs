@@ -18,7 +18,7 @@ public class Elevator_Engine : MonoBehaviour
 
         transform.position += Vector3.up * speed * Time.deltaTime; //actual movement of the elevator.
 
-        //speeds not final
+        //speeds final
         if (level == 0)
         {//level 1
             speed = 0;
@@ -29,18 +29,8 @@ public class Elevator_Engine : MonoBehaviour
             speed = 2;
         }
 
-        if (level == 2)
-        {//level 3
-            speed = 5;
-        }
-
-        if (level == 3)
-        {//level 4
-            speed = 10;
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && level < 3 ||//Given that the speed is not currently at 3 or 0...
-            OVRInput.GetDown(OVRInput.Button.One) && level < 3)//increase/decrease the level by 1.
+        if (Input.GetKeyDown(KeyCode.UpArrow) && level < 1 ||//Given that the speed is not currently at 1 or 0...
+            OVRInput.GetDown(OVRInput.Button.One) && level < 1)//increase/decrease the level by 1.
         {//arrow keys are for therapist. Buttons are for the user
             level++;
         }
