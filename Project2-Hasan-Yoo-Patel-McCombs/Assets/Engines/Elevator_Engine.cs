@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Elevator_Engine : MonoBehaviour
 {
+    public GameObject gun;
+    public GameObject gunSpawnLoc;
     public float speed = 0;
     public int level = 0;
     // Start is called before the first frame update
@@ -16,6 +18,11 @@ public class Elevator_Engine : MonoBehaviour
     void Update()
     {//Have 4 levels of speed. 0 1 2 and 3, with 3 being the highest. Allow therapist to use arrow keys to also control speed.
 
+        //check if gun has fallen
+        if(gun.transform.position.y < -0.3){
+            Destroy(gun);
+            Instantiate(gun, gunSpawnLoc.transform.position, gunSpawnLoc.transform.rotation);
+        }
         transform.position += Vector3.up * speed * Time.deltaTime; //actual movement of the elevator.
 
         //speeds final

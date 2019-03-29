@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -14,15 +15,20 @@ public class Bullet : MonoBehaviour
 	void Update()
 	{
 		transform.position = transform.position + .5f * transform.forward;
-		//transform.Translate(0,0,.5f);
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
-	/* 	if (collision.gameObject.name != "Gun" && collision.gameObject.name == "Target")
+	 	if (this.gameObject.name=="Target")
 		{
 			Destroy(this.gameObject);
             Destroy(collision.gameObject);
-		}*/
+			GameManager.targetCount--;
+		}
+
+		else{
+			Destroy(collision.gameObject);
+			Debug.Log("here");
+		}
 	}
 }
