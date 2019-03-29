@@ -8259,6 +8259,7 @@ MonoBehaviour:
   - {fileID: 4786751327179916540, guid: 35e3241dc02aa9141aec981800c68ad7, type: 3}
   - {fileID: 4786751327179916540, guid: 35e3241dc02aa9141aec981800c68ad7, type: 3}
   - {fileID: 4786751327179916540, guid: 35e3241dc02aa9141aec981800c68ad7, type: 3}
+  gameText: {fileID: 579629437}
 --- !u!4 &2048642926
 Transform:
   m_ObjectHideFlags: 0
