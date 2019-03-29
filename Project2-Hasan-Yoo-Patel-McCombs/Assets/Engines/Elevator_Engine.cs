@@ -48,7 +48,7 @@ public class Elevator_Engine : MonoBehaviour
             OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {//if all the triggers are squeezed together, then it resets the elevator
                 level = 0;
-                transform.position = new Vector3((float)-101.264, (float)-90.365, (float)160.646);
+                transform.position = new Vector3((float)-101.264, (float)2.05, (float)160.646);
         }
 
         //seperated inputs for readability

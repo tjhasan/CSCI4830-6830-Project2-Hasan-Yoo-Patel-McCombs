@@ -32,6 +32,6 @@ public class TherapistGUIEngine : MonoBehaviour
     public void ForceQuitButtonClicked()
     {
         elv.level = 0;
-        elv.transform.position = new Vector3((float)-101.264, (float)-90.365, (float)160.646);
+        elv.transform.position = new Vector3((float)-101.264, (float)2.05, (float)160.646);
     }
 }
