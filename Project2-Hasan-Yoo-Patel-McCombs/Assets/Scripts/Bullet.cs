@@ -14,14 +14,15 @@ public class Bullet : MonoBehaviour
 	void Update()
 	{
 		transform.position = transform.position + .5f * transform.forward;
+		//transform.Translate(0,0,.5f);
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.name != "Gun" && collision.gameObject.name == "Target")
+	/* 	if (collision.gameObject.name != "Gun" && collision.gameObject.name == "Target")
 		{
 			Destroy(this.gameObject);
             Destroy(collision.gameObject);
-		}
+		}*/
 	}
 }

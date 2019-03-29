@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
 
     Vector3 originElv;
 
-    public GameObject[] targets;
-
-    public GameObject textLvl1;
-    public GameObject textLvl1Loc;
+    public int targetCount = 0;
+    public GameObject[] targetPos;
+    //public GameObject textLvl1;
+    //public GameObject textLvl1Loc;
 
 
 
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     void fire()
 
     {
-
+Debug.Log("fired");
         Bullet b = Instantiate<Bullet>(bulletPrefab, bulletLoc.transform.position, bulletLoc.transform.rotation);
 
         Destroy(b.gameObject, 1.0f);
@@ -76,34 +76,26 @@ public class GameManager : MonoBehaviour
 
     void miniGame()
     {
+        Debug.Log("inMini");
+        
+        
 
-        if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-
+         if (level == 1 || level ==2 || level == 3)
         {
-
-            bool bDown = OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger);
-
-            if (bDown == true)
-            {
-                fire();
-            }
-
-        }
-
-        if (level == 1 || level ==2 || level == 3)
-        {
+            Debug.Log("in level");
            // Instantiate(textLvl1, textLvl1Loc.transform.position, textLvl1Loc.transform.rotation);
             elv.level = 0;
-            Vector3[] targetPos = new[] { new Vector3(-105.28f, -92.62f, 146.82f), new Vector3(-94.51113f, -92.62f, 139.96f), new Vector3(-111.89f, -92.62f, 157.15f), new Vector3(-111.89f, -92.62f, 150.54f), new Vector3(-101.22f, -92.62f, 154.51f) };
+            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f), new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
             for (int i = 0; i < 5; i++)
             {
+                targetCount++;
                 Instantiate(target, targetPos[i], Quaternion.identity);
-
+Debug.Log("created target");
             }
-            while (target != null)
-            {
-                elv.level = 0;
-            }
+            // while (targetCount != 0)
+            // {
+            //     elv.level = 0;
+            // }
         }
     }
 
@@ -113,6 +105,17 @@ public class GameManager : MonoBehaviour
     void Update()
 
     {
+     if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+            {
+                Debug.Log("gunHeld");
+            bool bDown = OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger);
+            if (bDown == true)
+            {
+                Debug.Log("trigger pulled");
+                fire();
+            }
+
+        }  
         // Debug.Log("Elevator" + Elevator.transform.position.y);
         //Debug.Log("origin" + originElv.y);
         if (Elevator.transform.position.y >= originElv.y + 10f && level1Played==false)
