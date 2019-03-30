@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
         bulletLifeTime -= Time.deltaTime;
         if (bulletLifeTime < 0)
         {
-            Debug.Log("Destroying Rocket");
             Destroy(this.gameObject);
         }
         transform.Translate(0, 0, bulletSpeed);
@@ -31,9 +30,9 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.name == "Target(Clone)")
         {
+            GameManager.targetCount--;
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
-            GameManager.targetCount--;
         }
     }
 }

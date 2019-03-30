@@ -75,11 +75,6 @@ public class GameManager : MonoBehaviour
                 targetCount++;
                 Instantiate(target, targetPos[i], Quaternion.identity);
             }
-
-            // while (targetCount != 0)  //if beat stop time and set levelTime to 0
-            // {
-            //     elv.level = 0;
-            // }
         }
     }
 
@@ -87,49 +82,75 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(targetCount);
 
-        if (level == 1) //&&gunpcikedup
+        // if (level == 1) //&&gunpcikedup
+        // {
+        //     startTime = true;
+        //  }
+        //if (startTime)
+        //{
+        if (level == 1)//(level1Played == false)
         {
-            startTime = true;
+            if (targetCount != 0)
+            {
+                levelTime += Time.deltaTime;
+                levelTimeLvl1 = levelTime;
+                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [Timer TBD]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
+            }
+            else
+            {
+                levelTime = 0;
+
+            }
         }
-        if (startTime)
+        
+        else if (level == 2)
         {
-            if (level1Played == true)
+            if (targetCount != 0)
             {
                 levelTime += Time.deltaTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTime + "]\nLevel 2:    [Timer TBD]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
+                levelTimeLvl2 = levelTime;
+                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
             }
-
-            else if (level1Played == true && level1Played == false)
+            else
             {
-                levelTime += Time.deltaTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTime + "]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
+                levelTime = 0;
             }
-
-            else if (level2Played == true && level3Played == false)
-            {
-                levelTime += Time.deltaTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTime + "]\nExtreme:  [Timer TBD] ";
-            }
-
-            else if (levelExtPlayed == false && level3Played == true)
-            {
-                levelTime += Time.deltaTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [" + extremeLevelTime + "] ";
-            }
-
         }
+
+        else if (level == 3)
+        {
+            if (targetCount != 0)
+            {
+                levelTime += Time.deltaTime;
+                levelTimelvl3 = levelTime;
+                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [Timer TBD] ";
+            }
+            else
+            {
+                levelTime = 0;
+            }
+        }
+
+        else if (level == 4)
+        {
+            levelTime += Time.deltaTime;
+            extremeLevelTime = levelTime;
+            gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [" + extremeLevelTime + "] ";
+        }
+
+      //  }
 
         if (targetCount == 0)
         {//checking to see which level they are progressing to
             if ((level1Played == true && level2Played == false && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == false) ||
-               (level1Played == true && level2Played == true && level3Played == true))
+               (level1Played == true && level2Played == true && level3Played == true && levelExtPlayed==false))
             {
-                Debug.Log("hello");
+                
                 elv.level = 1;
             }
+          
 
             if (Elevator.transform.position.y >= originElv.y + 10f && level1Played == false)
             {//after the elevator moves up 10 units level 1 starts
@@ -149,6 +170,12 @@ public class GameManager : MonoBehaviour
                 miniGame();
                 level3Played = true;
             }
+            else if (Elevator.transform.position.y >= originElv.y + 135f && levelExtPlayed == false)
+            {
+                level = 4;
+                levelExtPlayed = true;
+                elv.level = 0;
+            }
         }
 
         else
@@ -167,6 +194,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+            
         }
     }
 }
