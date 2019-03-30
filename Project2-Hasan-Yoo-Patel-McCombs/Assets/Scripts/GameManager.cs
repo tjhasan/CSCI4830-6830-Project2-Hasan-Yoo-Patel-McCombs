@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-
     public Transform bulletLoc;
 
     public Bullet bulletPrefab;
@@ -41,11 +39,12 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI gameText;
     float levelTime;
-    float levelTimeLvl1;
-    float levelTimeLvl2;
-    float levelTimelvl3;
-    float extremeLevelTime;
+    float levelTimeLvl1 = 0;
+    float levelTimeLvl2 = 0;
+    float levelTimelvl3 = 0;
+    float extremeLevelTime = 0;
     bool startTime = false;
+    
     
     //TextMesh textboxClone;
 
@@ -54,8 +53,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //PlayerPrefs.SetFloat("bestTime, 0");
         originElv = Elevator.transform.position;
-
+        gameText.text = "Level 1:    [N/a]\nLevel 2:    [N/A]\nLevel 3:    [N/A]\nExtreme:  [N/A] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
     }
 
     void fire()
@@ -78,10 +78,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /*public void checkHighScore() {
+        if (PlayerPrefs.GetFloat("bestTime") == 0)
+        {
+            PlayerPrefs.SetFloat("bestTime", levelTimeLvl1);
+        }
 
+        if (levelTimeLvl1 < PlayerPrefs.GetFloat("bestTime"))
+        {
+            PlayerPrefs.SetFloat("bestTime", levelTimeLvl1);
+        }
+
+        if (levelTimeLvl2 < PlayerPrefs.GetFloat("bestTime"))
+        {
+            PlayerPrefs.SetFloat("bestTime", levelTimeLvl2);
+        }
+
+        if (levelTimelvl3 < PlayerPrefs.GetFloat("bestTime"))
+        {
+            PlayerPrefs.SetFloat("bestTime", levelTimelvl3);
+        }
+
+        if (extremeLevelTime < PlayerPrefs.GetFloat("bestTime"))
+        {
+            PlayerPrefs.SetFloat("bestTime", extremeLevelTime);
+        }
+    }*/
+
+    // Update is called once per frame
     void Update()
     {
+       
 
         // if (level == 1) //&&gunpcikedup
         // {
@@ -95,11 +122,21 @@ public class GameManager : MonoBehaviour
             {
                 levelTime += Time.deltaTime;
                 levelTimeLvl1 = levelTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [Timer TBD]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
+                gameText.text = "Level 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [N/A]\nLevel 3:    [N/A]\nExtreme:  [N/A]  \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
+                Debug.Log(PlayerPrefs.GetFloat("bestTime"));
             }
             else
             {
                 levelTime = 0;
+                if (PlayerPrefs.GetFloat("bestTime") == 0)
+                {
+                    PlayerPrefs.SetFloat("bestTime", levelTimeLvl1);
+                }
+                if (levelTimeLvl1 < PlayerPrefs.GetFloat("bestTime"))
+                {
+                    PlayerPrefs.SetFloat("bestTime", levelTimeLvl1);
+                }
+                
 
             }
         }
@@ -110,11 +147,17 @@ public class GameManager : MonoBehaviour
             {
                 levelTime += Time.deltaTime;
                 levelTimeLvl2 = levelTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [Timer TBD]\nExtreme:  [Timer TBD] ";
+                gameText.text = "Level 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [N/A]\nExtreme:  [N/A]  \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
+                Debug.Log("after lvl 1 " + PlayerPrefs.GetFloat("bestTime"));
             }
             else
             {
                 levelTime = 0;
+                if (levelTimeLvl2 < PlayerPrefs.GetFloat("bestTime"))
+                {
+                    PlayerPrefs.SetFloat("bestTime", levelTimeLvl2);
+                }
+
             }
         }
 
@@ -124,11 +167,16 @@ public class GameManager : MonoBehaviour
             {
                 levelTime += Time.deltaTime;
                 levelTimelvl3 = levelTime;
-                gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [Timer TBD] ";
+                gameText.text = "Level 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [N/A] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
+                Debug.Log("after lvl 2 " + PlayerPrefs.GetFloat("bestTime"));
             }
             else
             {
                 levelTime = 0;
+                if (levelTimelvl3 < PlayerPrefs.GetFloat("bestTime"))
+                {
+                    PlayerPrefs.SetFloat("bestTime", levelTimelvl3);
+                }
             }
         }
 
@@ -136,7 +184,7 @@ public class GameManager : MonoBehaviour
         {
             levelTime += Time.deltaTime;
             extremeLevelTime = levelTime;
-            gameText.text = "Name:      [Name writing TBD]\nLevel 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [" + extremeLevelTime + "] ";
+            gameText.text = "Level 1:    [" + levelTimeLvl1 + "]\nLevel 2:    [" + levelTimeLvl2 + "]\nLevel 3:    [" + levelTimelvl3 + "]\nExtreme:  [" + extremeLevelTime + "] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
         }
 
       //  }
@@ -147,8 +195,7 @@ public class GameManager : MonoBehaviour
                (level1Played == true && level2Played == true && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == true && levelExtPlayed==false))
             {
-                
-                elv.level = 1;
+
             }
           
 
