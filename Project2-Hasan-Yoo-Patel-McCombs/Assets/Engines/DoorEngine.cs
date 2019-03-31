@@ -8,12 +8,15 @@ public class DoorEngine : MonoBehaviour
     public float turnSpeed = 50f;
     public GameObject Door;
     public GameObject Elevator;
+    public Transform WindSound;
     private bool isTurn = false;
+    public float time = 80f; //30 seconds for you
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        WindSound.transform.GetComponent<AudioSource>().Stop();
     }
 
     // Update is called once per frame
@@ -34,6 +37,18 @@ public class DoorEngine : MonoBehaviour
         else
         {
             Door.transform.Rotate(Vector3.forward,0.0f);
+            WindSound.transform.GetComponent<AudioSource>().Play();
+        }
+
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Play Audio Here -- Timer Over!!");
+            WindSound.transform.GetComponent<AudioSource>().Play();
+            time = 80f;
         }
     }
 

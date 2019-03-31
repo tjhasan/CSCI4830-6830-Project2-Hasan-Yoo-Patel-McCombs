@@ -7,11 +7,12 @@ public class Bullet : MonoBehaviour
     public GameObject target;
     public float bulletLifeTime;
     public float bulletSpeed;
+    public Transform gunSound;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gunSound.transform.GetComponent<AudioSource>().Stop();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        gunSound.transform.GetComponent<AudioSource>().Play();
         transform.Translate(0, 0, bulletSpeed);
         transform.position = transform.position + .5f * transform.forward;
     }
