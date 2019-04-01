@@ -6,10 +6,15 @@ public class Elevator_Engine : MonoBehaviour
 {
     public float speed = 0;
     public int level = 0;
+    public Transform StartAudio;
+    public Transform ForceAudio;
+    public GameObject UpButton;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        StartAudio.transform.GetComponent<AudioSource>().Play();
+        ForceAudio.transform.GetComponent<AudioSource>().Stop();
     }
 
     // Update is called once per frame
@@ -48,7 +53,8 @@ public class Elevator_Engine : MonoBehaviour
             OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {//if all the triggers are squeezed together, then it resets the elevator
                 level = 0;
-                Initiate.Fade("Survey Scene", Color.black, 0.0f);
+            ForceAudio.transform.GetComponent<AudioSource>().Play();
+                StartCoroutine("waitingForTransition");
         }
 
         //seperated inputs for readability
@@ -58,4 +64,12 @@ public class Elevator_Engine : MonoBehaviour
             transform.position = new Vector3(1.111f, 0.824f, 0.573f);
         }
     }
+
+    IEnumerator waitingForTransition()
+    {
+        yield return new WaitForSeconds(8.0f);
+        Initiate.Fade("Survey Scene", Color.black, 0.5f);
+    }
+
 }
+

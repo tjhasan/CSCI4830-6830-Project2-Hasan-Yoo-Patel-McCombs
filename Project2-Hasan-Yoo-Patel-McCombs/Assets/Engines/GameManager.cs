@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
 
     public static int targetCount = 0;
     public GameObject[] targetPos;
+
+    public Transform MiniGameStartAudio;
+    public Transform MiniGameEndAudio;
+    public Transform ExtremeAudio;
     //public GameObject textLvl1;
     //public GameObject textLvl1Loc;
 
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
     float levelTimelvl3 = 0;
     float extremeLevelTime = 0;
     bool startTime = false;
+
+    bool sound = false;
     
     
     //TextMesh textboxClone;
@@ -56,6 +62,10 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.SetFloat("bestTime, 0");
         originElv = Elevator.transform.position;
         gameText.text = "Level 1:    [N/a]\nLevel 2:    [N/A]\nLevel 3:    [N/A]\nExtreme:  [N/A] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
+        MiniGameEndAudio.transform.GetComponent<AudioSource>().Stop();
+        MiniGameStartAudio.transform.GetComponent<AudioSource>().Stop();
+        ExtremeAudio.transform.GetComponent<AudioSource>().Stop();
+
     }
 
     void fire()
@@ -65,12 +75,16 @@ public class GameManager : MonoBehaviour
 
     void miniGame()
     {
+        if(level == 1)
+        {
+            MiniGameStartAudio.transform.GetComponent<AudioSource>().Play();
+        }
         if (level == 1 || level == 2 || level == 3)
         {
-            Instantiate(bitGun, rightHand.transform.position, rightHand.transform.rotation);
+            //Instantiate(bitGun, rightHand.transform.position, rightHand.transform.rotation);
             elv.level = 0;
-            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f) };//, new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
-            for (int i = 0; i < 1; i++)
+            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f), new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
+            for (int i = 0; i < targetPos.Length; i++)
             {
                 targetCount++;
                 Instantiate(target, targetPos[i], Quaternion.identity);
@@ -136,8 +150,6 @@ public class GameManager : MonoBehaviour
                 {
                     PlayerPrefs.SetFloat("bestTime", levelTimeLvl1);
                 }
-                
-
             }
         }
         
@@ -191,13 +203,20 @@ public class GameManager : MonoBehaviour
 
         if (targetCount == 0)
         {//checking to see which level they are progressing to
+            //if the gun exists and the game is over destroy the gun
+            /*
+            if (bitGun != null)
+            {
+                Destroy(bitGun);
+            }
+            */
+
             if ((level1Played == true && level2Played == false && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == true && levelExtPlayed==false))
             {
 
             }
-          
 
             if (Elevator.transform.position.y >= originElv.y + 10f && level1Played == false)
             {//after the elevator moves up 10 units level 1 starts
