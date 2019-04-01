@@ -32,6 +32,6 @@ public class TherapistGUIEngine : MonoBehaviour
     public void ForceQuitButtonClicked()
     {
         elv.level = 0;
-        elv.transform.position = new Vector3((float)-101.264, (float)2.05, (float)160.646);
+        Initiate.Fade("Survey Scene", Color.black, 0.0f);
     }
 }

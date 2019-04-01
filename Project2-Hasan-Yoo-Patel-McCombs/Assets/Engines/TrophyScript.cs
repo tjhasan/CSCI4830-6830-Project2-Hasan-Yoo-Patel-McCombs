@@ -26,6 +26,13 @@ public class TrophyScript : MonoBehaviour
         {
             Instantiate(CongratsText);
             CongratsSound.transform.GetComponent<AudioSource>().Play();
+            StartCoroutine("waitingForTransition");
         }
+    }
+
+    IEnumerator waitingForTransition()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Initiate.Fade("Survey Scene", Color.black, 0.5f);
     }
 }
