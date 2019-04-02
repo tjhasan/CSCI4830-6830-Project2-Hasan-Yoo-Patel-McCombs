@@ -214,6 +214,8 @@ public class GameManager : MonoBehaviour
             }
             */
 
+            bitGun.transform.GetComponent<Renderer>().enabled = false;
+
             if ((level1Played == true && level2Played == false && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == false) ||
                (level1Played == true && level2Played == true && level3Played == true && levelExtPlayed==false))

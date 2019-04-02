@@ -29,6 +29,8 @@ public class DoorEngine : MonoBehaviour
         {
             if (!isTurn)
             {
+                ExtremeAudio.transform.GetComponent<AudioSource>().Play();
+                WindSound.transform.GetComponent<AudioSource>().Play();
                 Door.transform.Rotate(Vector3.forward, -turnSpeed * Time.deltaTime);
                 if(Door.transform.rotation.y >= 0.0f)
                 {
@@ -39,22 +41,6 @@ public class DoorEngine : MonoBehaviour
         else
         {
             Door.transform.Rotate(Vector3.forward,0.0f);
-            WindSound.transform.GetComponent<AudioSource>().Play();
-            ExtremeAudio.transform.GetComponent<AudioSource>().Play();
-        }
-
-        if (time > 0)
-        {
-            time -= Time.deltaTime;
-        }
-        else
-        {
-            Debug.Log("Play Audio Here -- Timer Over!!");
-            WindSound.transform.GetComponent<AudioSource>().Play();
-            ExtremeAudio.transform.GetComponent<AudioSource>().Play();
-            time = 80f;
         }
     }
-
-
 }
