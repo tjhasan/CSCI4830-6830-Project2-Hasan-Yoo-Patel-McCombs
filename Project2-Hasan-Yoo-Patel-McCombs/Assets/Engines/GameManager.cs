@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         //PlayerPrefs.SetFloat("bestTime, 0");
         originElv = Elevator.transform.position;
-        gameText.text = "Level 1:    [N/a]\nLevel 2:    [N/A]\nLevel 3:    [N/A]\nExtreme:  [N/A] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
+        gameText.text = "Level 1:    [N/A]\nLevel 2:    [N/A]\nLevel 3:    [N/A]\nExtreme:  [N/A] \nOverall Best Time: " + PlayerPrefs.GetFloat("bestTime");
         MiniGameEndAudio.transform.GetComponent<AudioSource>().Stop();
         MiniGameStartAudio.transform.GetComponent<AudioSource>().Stop();
         ExtremeAudio.transform.GetComponent<AudioSource>().Stop();
@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour
         {
             //Instantiate(bitGun, rightHand.transform.position, rightHand.transform.rotation);
             elv.level = 0;
-            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f), new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
-            for (int i = 0; i < targetPos.Length; i++)
+            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f) };//, new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
+            for (int i = 0; i < 1/*targetPos.Length*/; i++)
             {
                 targetCount++;
                 Instantiate(target, targetPos[i], Quaternion.identity);
@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("Level 1 else");
                 levelTime = 0;
                 if (PlayerPrefs.GetFloat("bestTime") == 0)
                 {
@@ -164,6 +165,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("Level 2 else");
                 levelTime = 0;
                 if (levelTimeLvl2 < PlayerPrefs.GetFloat("bestTime"))
                 {
@@ -184,6 +186,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("Level 3 else");
                 levelTime = 0;
                 if (levelTimelvl3 < PlayerPrefs.GetFloat("bestTime"))
                 {

@@ -3891,12 +3891,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788559868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.5030702, y: 0.5030702, z: -0.49691093, w: 0.49691093}
+  m_LocalPosition: {x: 0.053833354, y: -0.002665269, z: 0.041852437}
+  m_LocalScale: {x: 1.9036242, y: 0.94444484, z: 2.0970716}
   m_Children: []
-  m_Father: {fileID: 1157823392}
-  m_RootOrder: 7
+  m_Father: {fileID: 1966289997}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &788559870
 AudioSource:
@@ -6760,7 +6760,6 @@ Transform:
   - {fileID: 1284316912}
   - {fileID: 701904121}
   - {fileID: 119151154}
-  - {fileID: 788559869}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -174.164, z: 0}
@@ -9481,6 +9480,7 @@ Transform:
   - {fileID: 1813727391}
   - {fileID: 118585881}
   - {fileID: 713049829}
+  - {fileID: 788559869}
   m_Father: {fileID: 1157823392}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -180, y: -84.869995, z: -90}
@@ -9501,6 +9501,7 @@ MonoBehaviour:
   Door: {fileID: 1966289991}
   Elevator: {fileID: 1157823386}
   WindSound: {fileID: 713049829}
+  ExtremeAudio: {fileID: 788559869}
   time: 80
 --- !u!43 &2012761253
 Mesh:
@@ -9508,7 +9509,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh4226380
+  m_Name: pb_Mesh72422
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -9945,7 +9946,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh4226534
+  m_Name: pb_Mesh72590
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

@@ -67,7 +67,7 @@ public class Elevator_Engine : MonoBehaviour
 
     IEnumerator waitingForTransition()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(8.0f);
         Initiate.Fade("Survey Scene", Color.black, 0.5f);
     }
 
