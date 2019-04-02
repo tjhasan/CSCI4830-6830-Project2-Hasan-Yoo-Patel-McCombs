@@ -53,7 +53,7 @@ public class Elevator_Engine : MonoBehaviour
             OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {//if all the triggers are squeezed together, then it resets the elevator
                 level = 0;
-            ForceAudio.transform.GetComponent<AudioSource>().Play();
+                ForceAudio.transform.GetComponent<AudioSource>().Play();
                 StartCoroutine("waitingForTransition");
         }
 
@@ -67,7 +67,7 @@ public class Elevator_Engine : MonoBehaviour
 
     IEnumerator waitingForTransition()
     {
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(1.0f);
         Initiate.Fade("Survey Scene", Color.black, 0.5f);
     }
 
