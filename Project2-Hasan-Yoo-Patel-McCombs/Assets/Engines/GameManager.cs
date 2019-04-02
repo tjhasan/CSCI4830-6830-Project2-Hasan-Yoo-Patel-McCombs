@@ -81,10 +81,12 @@ public class GameManager : MonoBehaviour
         }
         if (level == 1 || level == 2 || level == 3)
         {
+            bitGun.transform.GetComponent<Renderer>().enabled = true;
+
             //Instantiate(bitGun, rightHand.transform.position, rightHand.transform.rotation);
             elv.level = 0;
-            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f) };//, new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
-            for (int i = 0; i < 1/*targetPos.Length*/; i++)
+            Vector3[] targetPos = new[] { new Vector3(-104.7494f, -0.2f, 155.03f), new Vector3(-104.7494f, -0.2f, 144.16f), new Vector3(-117.01f, -0.2f, 148.62f), new Vector3(-90.99f, -0.2f, 145.42f), new Vector3(-90.99f, -0.2f, 154.09f) };
+            for (int i = 0; i < targetPos.Length; i++)
             {
                 targetCount++;
                 Instantiate(target, targetPos[i], Quaternion.identity);
